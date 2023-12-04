@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bill Split App - Join Us</title>
+    <style>
+        /* Your existing styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        form {
+            text-align: center;
+            padding: 60px;
+            background-color: #fff;
+            border-radius: 25px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .register-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            margin: 5px;
+        }
+        .greeting {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header section -->
+    <header>
+        <h1>Welcome to Bill Split App</h1>
+        <p class="greeting">First register with us</p>
+    </header>
+
+    <!-- Main content section -->
+    <main>
+
+        <form action="/user_registration" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Name" name="name" required><br><br>
+
+            <label for="user_id">User ID:</label>
+            <input type="text" id="user_id" placeholder="User ID" name="user_id" pattern="[a-z_0-9]+" title="Please enter a valid User ID in capital letters" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Email" name="email" required><br><br>
+
+            
+            <input type="submit" value="Submit">
+            <button onclick="location.href='/'" class ='register-button'  type="button">Home</button>
+    
+        </form>
+        
+        
+    </main>
+    
+</body>
+    <!-- Footer section -->
+    <footer>
+        <p>&copy; 2023 Bill Split App. All rights reserved.</p>
+    </footer>
+
+
+</html>
+

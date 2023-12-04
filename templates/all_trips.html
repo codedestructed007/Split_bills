@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All Trips</title>
+    <style>
+        /* Your existing styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .home-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 120px; /* Adjusted position */
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .trip-block {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 50px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .trip-block h2 {
+            margin: 0;
+        }
+
+        .trip-details {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .trip-block.active .trip-details {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    <h1>All Trips</h1>
+    <a href="/" class="home-button">Home</a>
+    <a href="#" onclick="history.back()" class="back-button">Back</a>
+
+    {% for trip_id, trip_details in trips.items() %}
+        <div class="trip-block" onclick="toggleDetails(this)">
+            <h2>{{ trip_details['Trip name'] }}</h2>
+            <div class="trip-details">
+                <p><strong>Trip ID:</strong> {{ trip_id }}</p>
+                <p><strong>Destination:</strong> {{ trip_details['Destination'] }}</p>
+                <p><strong>Start date:</strong> {{ trip_details['start_date'] }}</p>
+                <p><strong>End date:</strong> {{ trip_details['end_date'] }}</p>
+                <p><strong>State:</strong> {{ trip_details['State'] }}</p>
+                <p><strong>Members:</strong></p>                    
+                        {% for user_id in trip_details['User_id'] %}
+                            {% if users.get(user_id) %}
+                                <span>{{ user_id }} - <i>{{ users[user_id]['name'] }}</span></i><br>
+                            {% else %}
+                                <span>{{ user_id }} - <b>Member not found in database</b></span><br>
+                            {% endif %}
+                            
+                        {% endfor %}
+                <!-- Other details as needed -->
+            </div>
+        </div>
+    {% endfor %}
+
+    <script>
+        function toggleDetails(element) {
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

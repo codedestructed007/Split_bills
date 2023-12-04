@@ -1,0 +1,173 @@
+<!-- trips.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Details</title>
+    <style>
+        /* Your existing styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+        }
+
+        .trip-details {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .trip-details p, .trip-details ul {
+            margin-bottom: 15px;
+        }
+        .expenses-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px; /* Adjust margin-top as needed */
+        }
+        .trip-details {
+            position: relative;
+        }
+        .other-button {
+            
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .delete-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .back-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            margin: 5px;
+        }
+        .right-button {
+            /* Styles for the new button */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .expenses-button:absolute {
+            background-color: #555; /* Change color on hover if desired */
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header section -->
+    <header>
+        <h1>Welcome to Bill Split App</h1>
+    </header>
+
+    <!-- Trip details section -->
+    <div class="trip-details">
+        <h2>{{ trip_details['Trip name'] }}</h2>
+        <p><strong>Destination:</strong> {{ trip_details['Destination'] }}</p>
+        <p><strong>State:</strong> {{ trip_details['State'] }}</p>
+        <p><strong>Start Date:</strong> {{ trip_details['start_date'] }}</p>
+        <p><strong>End Date:</strong> {{ trip_details['end_date'] }}</p>
+
+        <h3>Users:</h3>
+        <ul>
+            {% for user_id in trip_details['User_id'] %}
+                <li>{{ user_id }} - {{ users_with_id.get(user_id,'Name not found') }}</li>
+            {% endfor %}
+        </ul>
+    </div>  
+    <div class = 'button-container'>
+        <button class="expenses-button" onclick="redirectToExpenses('{{ trip_id }}')">Expenses</button>
+        <button class="other-button" onclick="redirectToAddShare('{{ trip_id }}')">Add your share</button>
+        <button class="right-button" onclick="redirectToAddingToTrip('{{ trip_id }}')">Add yourself</button>
+        <button class="delete-button" onclick="redirectToDeletingFromTrip('{{ trip_id }}')">Delete member</button>
+        <button class="back-button" onclick="history.back()">Back</button>
+                   
+    </div>
+</body>
+    
+    <script>
+        function redirectToExpenses(tripId) {
+            window.location.href = '/expenses_page?trip_id=' + tripId;
+        }
+        function redirectToAddShare(tripId) {
+            // Replace this with the logic or URL to redirect to the 'Add your share' functionality
+            window.location.href = '/add_share_page?trip_id=' + tripId;
+        }
+        function redirectToAddingToTrip(tripId) {
+            window.location.href = '/add_me_into_trip?trip_id=' + tripId;
+        }
+        function redirectToDeletingFromTrip(tripId) {
+            // Redirect to delete member functionality
+            window.location.href = '/delete_member_from_trip?trip_id=' + tripId;
+        }
+    </script>
+
+    <!-- Footer section -->
+    <footer>
+        <p>&copy; 2023 Bill Split App. All rights reserved.</p>
+    </footer>
+
+
+</html>
