@@ -1,0 +1,4 @@
+PyYAML
+Flask
+MarkupSafe
+Markups
